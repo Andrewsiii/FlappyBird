@@ -15,7 +15,8 @@ entity pipes is
 		SIGNAL x_pos_1, x_pos_2 			  : OUT std_logic_vector(10 DOWNTO 0);
 		SIGNAL topheight_1, bottomheight_1 : OUT integer;
 	   SIGNAL topheight_2, bottomheight_2 : OUT integer;
-		SIGNAL pipe_out 	                 : OUT std_logic	
+		SIGNAL pipe_out 	                 : OUT std_logic;
+		SIGNAL current_level					: OUT std_logic_vector(5 DOWNTO 0)
 		);
 end pipes;
 
@@ -95,13 +96,15 @@ begin
 		pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
 		pipe_x_pos_2 <= CONV_STD_LOGIC_VECTOR(960,11);
 		
-	elsif(rising_edge(vert_sync) and pause = '0') then
+	elsif(rising_edge(vert_sync) and pause = '0') then -- every vertical sync = 699 * 524 / 25MHz = 0.015 sec
 	
 		-- Training mode pipe movement logic, difficulty levels remain the same
 		if (selected_mode = "01") then -- training mode	
 		
 			pipe_x_pos_1 <= pipe_x_pos_1 - pipe_x_motion;
 			pipe_x_pos_2 <= pipe_x_pos_2 - pipe_x_motion;
+			
+			current_level <= "110011";
 		
 			if (pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(0,11)) then
 				pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
@@ -113,7 +116,8 @@ begin
 				pipe_center_2 <= CONV_INTEGER(randnum);
 			end if;
 			
-		--	Regular mode pipe movement logic, difficulty increases every 25 secs.
+			
+			
 		elsif (selected_mode = "10") then --regular mode	
 	
 			pipe_x_pos_1 <= pipe_x_pos_1 - pipe_x_motion;
@@ -129,14 +133,27 @@ begin
 				pipe_center_2 <= CONV_INTEGER(randnum);
 			end if;
 			
-			-- Speed of the pipe movement increase as level increases
-			if(count = 1500 and level < 4) then 
+			-- speed of pipe increases with level, up to level 4 (it will increase 0.015*500 = around every 7.5 sec)
+			if(count = 500 and level < 4) then 
 				count := 0;
 				level := level + 1;
-				pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
+				if (level = 2) then
+					current_level <= "110010";
+					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
+				elsif (level = 3) then
+					current_level <= "110011";
+					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
+				else
+					current_level <= "110100";
+					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
+				end if;
+				
+			elsif(level = 1) then
+				current_level <= "110001";
 			end if;
 			
 			count := count + 1;
+			
 			
 		end if;
 	end if;

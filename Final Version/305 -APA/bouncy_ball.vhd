@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.all;
+use ieee.numeric_std.all;
 USE  IEEE.STD_LOGIC_ARITH.all;
 USE  IEEE.STD_LOGIC_SIGNED.all;
 
@@ -13,7 +14,7 @@ ENTITY bouncy_ball IS
 		 SIGNAL selected_mode                 			   : IN std_logic_vector(1 downto 0);
 		 SIGNAL score0_out, score1_out, score2_out 	   : OUT std_logic_vector(5 downto 0);
 		 SIGNAL hit													: OUT std_logic := '0';
-		 SIGNAL text_on, ball_on, pipe_out 					: OUT std_logic);		
+		 SIGNAL text_on, ball_on, pipe_out 					: OUT std_logic);	
 END bouncy_ball;
 
 architecture behavior of bouncy_ball is
@@ -43,7 +44,9 @@ COMPONENT pipes is
 		SIGNAL x_pos_1, x_pos_2 			  : OUT std_logic_vector(10 DOWNTO 0);
 		SIGNAL topheight_1, bottomheight_1 : OUT integer;
 	   SIGNAL topheight_2, bottomheight_2 : OUT integer;
-		SIGNAL pipe_out 	                 : OUT std_logic	
+		SIGNAL pipe_out 	                 : OUT std_logic;
+		SIGNAL current_level : OUT std_logic_vector(5 downto 0)
+		
 		);
 end COMPONENT pipes;
 
@@ -54,6 +57,11 @@ SIGNAL score0,score1, score2 : std_logic_vector(5 downto 0) := "110000";
 SIGNAL lives_text_out : STD_LOGIC := '0';
 SIGNAL lives_text     : std_logic_vector(5 downto 0); 
 SIGNAL lives          : std_logic_vector(5 downto 0) := "110011";
+
+SIGNAL level_text_out : STD_LOGIC := '0';
+SIGNAL level_text     : std_logic_vector(5 downto 0); 
+SIGNAL level : std_logic_vector(5 downto 0);
+
 
 SIGNAL text_x_pos : std_logic_vector(10 DOWNTO 0);
 SIGNAL text_y_pos : std_logic_vector(9 DOWNTO 0);
@@ -82,8 +90,12 @@ ball_on <= '1' when ( ('0' & ball_x_pos <= '0' & pixel_column + size) and ('0' &
 -- determines when and where to display the score 
 text_on <= '1' when (score_text_out = '1' and pixel_column <= CONV_STD_LOGIC_VECTOR(158,10) and pixel_column >= CONV_STD_LOGIC_VECTOR(14,10) 
 					and pixel_row <= CONV_STD_LOGIC_VECTOR(30,10) and pixel_row >= CONV_STD_LOGIC_VECTOR(16,10)) or
+					
 					(lives_text_out = '1' and pixel_column <= CONV_STD_LOGIC_VECTOR(128,10) and pixel_column >= CONV_STD_LOGIC_VECTOR(14,10) 
-					and pixel_row <= CONV_STD_LOGIC_VECTOR(45,10) and pixel_row >= CONV_STD_LOGIC_VECTOR(30,10))
+					and pixel_row <= CONV_STD_LOGIC_VECTOR(45,10) and pixel_row >= CONV_STD_LOGIC_VECTOR(30,10)) or
+					
+					(level_text_out = '1' and pixel_column <= CONV_STD_LOGIC_VECTOR(98,10) and pixel_column >= CONV_STD_LOGIC_VECTOR(14,10) 
+					and pixel_row <= CONV_STD_LOGIC_VECTOR(60,10) and pixel_row >= CONV_STD_LOGIC_VECTOR(45,10))
 					else 
 					'0';
 
@@ -108,12 +120,20 @@ lives_text <= CONV_STD_LOGIC_VECTOR(12,6) when pixel_column <= CONV_STD_LOGIC_VE
 				CONV_STD_LOGIC_VECTOR(45,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(110,10) else -- "-"
 				lives when pixel_column <= CONV_STD_LOGIC_VECTOR(126,10) else -- "#"
 				"101111";
-
+				
+level_text <= CONV_STD_LOGIC_VECTOR(12,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(30,10) else -- "L"
+				CONV_STD_LOGIC_VECTOR(22,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(45,10) else -- "V"
+				CONV_STD_LOGIC_VECTOR(12,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(62,10) else -- "L"
+				CONV_STD_LOGIC_VECTOR(45,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(78,10) else -- "-"
+				level when pixel_column <= CONV_STD_LOGIC_VECTOR(94,10) else -- "#"
+				"101111";
+				
 --	Assigns port map and instantiates these components	
 textscore: char_rom port map (score_text, pixel_row(3 downto 1), pixel_column(3 downto 1), clk, score_text_out);
 textlives: char_rom port map (lives_text, pixel_row(3 downto 1), pixel_column(3 downto 1), clk, lives_text_out);
+textlevel: char_rom port map (level_text, pixel_row(3 downto 1), pixel_column(3 downto 1), clk, level_text_out);
 pipe: pipes port map (clk, vert_sync, reset, pause, hit_temp, pixel_row, pixel_column, selected_mode, pipe_x_pos_1, 
-                      pipe_x_pos_2, topheight_1, bottomheight_1, topheight_2, bottomheight_2, pipe_out);
+                      pipe_x_pos_2, topheight_1, bottomheight_1, topheight_2, bottomheight_2, pipe_out, level);
 			
 
 	
@@ -138,7 +158,7 @@ begin
 		life := 3; -- Sets initial number of lives to 3
 		hit_temp <= '0';
 		
-	elsif(rising_edge(vert_sync) and pause = '0') then  
+	elsif(rising_edge(vert_sync) and pause = '0') then  -- every vertical sync = 699 * 524 / 25MHz = 0.015 sec
 		-- Move ball once every vertical sync
 		if (selected_mode = "01" or selected_mode = "10") then			
 			
@@ -185,8 +205,8 @@ begin
 				score_check := '1';
 			end if;
 			
-			-- SPECIAL FEATURE, REGULAR MODE ONLY!!! Player gains a life every 25 points if remaining lives is less 3...As a reward :)
-			if (selected_mode = "10" and lives < 3 and score = 25) then
+			-- (SPECIAL FEATURE, REGULAR MODE ONLY!!! Player gains a life every 10 points if remaining lives is less 9...As a reward :)
+			if (selected_mode = "10" and lives < 9 and score = 10) then
 				score := 0;
 				lives <= lives + 1;
 			end if;

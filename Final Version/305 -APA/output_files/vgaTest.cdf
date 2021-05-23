@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C16F484) Path("C:/Users/hp/Desktop/Final_sub/FlaPGA-CS305-master/output_files/") File("vgaTest.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C16F484) Path("C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/output_files/") File("vgaTest.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

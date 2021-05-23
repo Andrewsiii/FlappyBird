@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Fri May 21 12:26:01 2021
+Analysis & Synthesis Status : Successful - Sun May 23 23:35:21 2021
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : vgaTest
 Top-level Entity Name : vgaTest
 Family : Cyclone III
-Total logic elements : 947
-    Total combinational functions : 896
-    Dedicated logic registers : 234
-Total registers : 234
+Total logic elements : 969
+    Total combinational functions : 918
+    Dedicated logic registers : 237
+Total registers : 237
 Total pins : 12
 Total virtual pins : 0
-Total memory bits : 24,576
+Total memory bits : 28,672
 Embedded Multiplier 9-bit elements : 0
 Total PLLs : 1

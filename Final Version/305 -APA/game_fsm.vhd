@@ -1,8 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_signed.all;
+
 
 entity game_fsm is
 port (
@@ -17,19 +16,22 @@ end entity;
 architecture fsm of game_fsm is
 -- FSM signals
 type state_type is (s_menu, s_regular, s_training, s_over);
-signal state, next_state : state_type := s_menu;
+signal state, next_state : state_type;
 
 begin
 
 	--synchronously move to next state
 	sync_proc : process(clk, reset) 
-	begin
-		if (reset = '1') then
-			state <= s_menu;
-		elsif (rising_edge(clk)) then
-			state <= next_state;
+	begin	
+		if rising_edge(clk) then
+			if (reset = '1') then
+				state <= s_menu;
+			else
+				state <= next_state;
+			end if;
 		end if;
 	end process;
+	
 
 	--asynchronously decide next state based only on current state and inputs
 	next_states_fn: process(state, PB1, PB2, SW_pause, hit) 

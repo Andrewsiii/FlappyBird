@@ -1,5 +1,5 @@
 Assembler report for vgaTest
-Fri May 21 12:26:16 2021
+Sun May 23 23:35:31 2021
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/skwe9/Desktop/305 -APA/output_files/vgaTest.sof
+  5. Assembler Device Options: C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/output_files/vgaTest.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri May 21 12:26:16 2021 ;
+; Assembler Status      ; Successful - Sun May 23 23:35:31 2021 ;
 ; Revision Name         ; vgaTest                               ;
 ; Top-level Entity Name ; vgaTest                               ;
 ; Family                ; Cyclone III                           ;
@@ -77,24 +77,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+----------------------------------------------------------+
-; Assembler Generated Files                                ;
-+----------------------------------------------------------+
-; File Name                                                ;
-+----------------------------------------------------------+
-; C:/Users/skwe9/Desktop/305 -APA/output_files/vgaTest.sof ;
-+----------------------------------------------------------+
++---------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                   ;
++---------------------------------------------------------------------------------------------+
+; File Name                                                                                   ;
++---------------------------------------------------------------------------------------------+
+; C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/output_files/vgaTest.sof ;
++---------------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/skwe9/Desktop/305 -APA/output_files/vgaTest.sof ;
-+----------------+-------------------------------------------------------------------+
-; Option         ; Setting                                                           ;
-+----------------+-------------------------------------------------------------------+
-; Device         ; EP3C16F484C6                                                      ;
-; JTAG usercode  ; 0x00195571                                                        ;
-; Checksum       ; 0x00195571                                                        ;
-+----------------+-------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/output_files/vgaTest.sof ;
++----------------+------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                              ;
++----------------+------------------------------------------------------------------------------------------------------+
+; Device         ; EP3C16F484C6                                                                                         ;
+; JTAG usercode  ; 0x001A41EE                                                                                           ;
+; Checksum       ; 0x001A41EE                                                                                           ;
++----------------+------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri May 21 12:26:14 2021
+    Info: Processing started: Sun May 23 23:35:30 2021
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off vgaTest -c vgaTest
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 4544 megabytes
-    Info: Processing ended: Fri May 21 12:26:16 2021
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Processing ended: Sun May 23 23:35:31 2021
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 
