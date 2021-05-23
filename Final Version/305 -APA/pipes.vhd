@@ -32,7 +32,7 @@ port
 );
 end component LFSR;	
 
-SIGNAL gap     					: integer   := 75;
+SIGNAL gap     					: integer   := 100;  -- gap between the two pipes
 
 SIGNAL pipe_width 				: std_logic_vector(9 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(35,10);
 SIGNAL pipe_spacing 				: std_logic_vector(9 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(285,10);

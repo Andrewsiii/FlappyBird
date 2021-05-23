@@ -139,8 +139,6 @@ pipe: pipes port map (clk, vert_sync, reset, pause, hit_temp, pixel_row, pixel_c
 	
 Move_Ball: process (vert_sync, reset, pause) 
 variable flag : std_logic := '0'; -- determines wheter or not ball is allowed to jump
-variable counter : integer range 0 to 10 := 0; -- allows fluid movement of the ball
-variable counter2 : integer range 0 to 10 := 0; 
 variable score_check : std_logic := '1';
 variable life	:	integer range 0 to 3 := 3;
 variable score : integer range 0 to 26 := 0;
@@ -212,7 +210,6 @@ begin
 			end if;
 			
 			--updates the y position of the player
-			counter2 := counter2 + 2;
 			ball_y_pos <= ball_y_pos + ball_y_motion;
 			
 			-- Logic to increase the score by one when the bird passes through a pipe 
