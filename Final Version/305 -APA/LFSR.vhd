@@ -18,7 +18,7 @@ end LFSR;
 architecture behaviour of LFSR is 
 
 --Generates pseudo-random values for the pipe gaps
-signal rand: STD_LOGIC_VECTOR(7 downto 0) := "10101010"; -- 170
+signal rand: STD_LOGIC_VECTOR(7 downto 0) := "10101010";
 
     begin
         process(clk, reset)
@@ -30,9 +30,9 @@ signal rand: STD_LOGIC_VECTOR(7 downto 0) := "10101010"; -- 170
                     rand <= "01010101";
                 else 
                     temp := rand(6) XOR rand(4) XOR rand(3) XOR rand(2) XOR rand(0);
-                    rand <= temp & rand(7 downto 1); -- 85 or 213
+                    rand <= temp & rand(7 downto 1);
                 end if;
             end if;
         end process;
-    output <= ('0' & rand) + CONV_STD_LOGIC_VECTOR(100, 8); -- rand (8bit) + 0b00110010 
+    output <= ('0' & rand) + CONV_STD_LOGIC_VECTOR(100, 9);
 end behaviour;

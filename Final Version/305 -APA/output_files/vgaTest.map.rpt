@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vgaTest
-Mon May 24 10:46:51 2021
+Mon May 24 00:12:10 2021
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -68,13 +68,13 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon May 24 10:46:51 2021           ;
+; Analysis & Synthesis Status        ; Successful - Mon May 24 00:12:10 2021           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; vgaTest                                         ;
 ; Top-level Entity Name              ; vgaTest                                         ;
 ; Family                             ; Cyclone III                                     ;
-; Total logic elements               ; 953                                             ;
-;     Total combinational functions  ; 902                                             ;
+; Total logic elements               ; 967                                             ;
+;     Total combinational functions  ; 916                                             ;
 ;     Dedicated logic registers      ; 237                                             ;
 ; Total registers                    ; 237                                             ;
 ; Total pins                         ; 12                                              ;
@@ -224,17 +224,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                               ;
 +---------------------------------------------+-------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 953                                                                                 ;
+; Estimated Total logic elements              ; 967                                                                                 ;
 ;                                             ;                                                                                     ;
-; Total combinational functions               ; 902                                                                                 ;
+; Total combinational functions               ; 916                                                                                 ;
 ; Logic element usage by number of LUT inputs ;                                                                                     ;
-;     -- 4 input functions                    ; 385                                                                                 ;
-;     -- 3 input functions                    ; 266                                                                                 ;
-;     -- <=2 input functions                  ; 251                                                                                 ;
+;     -- 4 input functions                    ; 378                                                                                 ;
+;     -- 3 input functions                    ; 259                                                                                 ;
+;     -- <=2 input functions                  ; 279                                                                                 ;
 ;                                             ;                                                                                     ;
 ; Logic elements by mode                      ;                                                                                     ;
-;     -- normal mode                          ; 592                                                                                 ;
-;     -- arithmetic mode                      ; 310                                                                                 ;
+;     -- normal mode                          ; 578                                                                                 ;
+;     -- arithmetic mode                      ; 338                                                                                 ;
 ;                                             ;                                                                                     ;
 ; Total registers                             ; 237                                                                                 ;
 ;     -- Dedicated logic registers            ; 237                                                                                 ;
@@ -248,8 +248,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                                                                                     ;
 ; Maximum fan-out node                        ; altpll1:inst|altpll:altpll_component|altpll1_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 143                                                                                 ;
-; Total fan-out                               ; 4184                                                                                ;
-; Average fan-out                             ; 3.42                                                                                ;
+; Total fan-out                               ; 4183                                                                                ;
+; Average fan-out                             ; 3.38                                                                                ;
 +---------------------------------------------+-------------------------------------------------------------------------------------+
 
 
@@ -258,14 +258,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                ; Library Name ;
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |vgaTest                                        ; 902 (1)           ; 237 (0)      ; 28672       ; 0            ; 0       ; 0         ; 12   ; 0            ; |vgaTest                                                                                                                           ; work         ;
+; |vgaTest                                        ; 916 (1)           ; 237 (0)      ; 28672       ; 0            ; 0       ; 0         ; 12   ; 0            ; |vgaTest                                                                                                                           ; work         ;
 ;    |MOUSE:inst2|                                ; 51 (51)           ; 62 (62)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|MOUSE:inst2                                                                                                               ; work         ;
-;    |VGA_SYNC:inst3|                             ; 70 (70)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|VGA_SYNC:inst3                                                                                                            ; work         ;
+;    |VGA_SYNC:inst3|                             ; 75 (75)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|VGA_SYNC:inst3                                                                                                            ; work         ;
 ;    |altpll1:inst|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst                                                                                                              ; work         ;
 ;       |altpll:altpll_component|                 ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst|altpll:altpll_component                                                                                      ; work         ;
 ;          |altpll1_altpll:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst|altpll:altpll_component|altpll1_altpll:auto_generated                                                        ; work         ;
-;    |display:inst4|                              ; 775 (6)           ; 124 (0)      ; 28672       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4                                                                                                             ; work         ;
-;       |bouncy_ball:bird|                        ; 605 (366)         ; 124 (48)     ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird                                                                                            ; work         ;
+;    |display:inst4|                              ; 784 (4)           ; 124 (0)      ; 28672       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4                                                                                                             ; work         ;
+;       |bouncy_ball:bird|                        ; 616 (366)         ; 124 (48)     ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird                                                                                            ; work         ;
 ;          |char_rom:textlevel|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel                                                                         ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel|altsyncram:altsyncram_component                                         ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated          ; work         ;
@@ -275,7 +275,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;          |char_rom:textscore|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore                                                                         ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore|altsyncram:altsyncram_component                                         ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated          ; work         ;
-;          |pipes:pipe|                           ; 227 (212)         ; 76 (68)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe                                                                                 ; work         ;
+;          |pipes:pipe|                           ; 238 (223)         ; 76 (68)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe                                                                                 ; work         ;
 ;             |LFSR:rand|                         ; 15 (15)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand                                                                       ; work         ;
 ;       |gameover:game_over_screen|               ; 68 (59)           ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen                                                                                   ; work         ;
 ;          |char_rom:scoretext|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:scoretext                                                                ; work         ;
@@ -402,24 +402,24 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; display:inst4|bouncy_ball:bird|ball_y_pos[6]                    ; 6       ;
 ; display:inst4|bouncy_ball:bird|ball_y_pos[5]                    ; 7       ;
 ; display:inst4|bouncy_ball:bird|ball_y_pos[2]                    ; 9       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[9]       ; 6       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]       ; 8       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[9]       ; 6       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[8]       ; 6       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[7]       ; 8       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]       ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[9]       ; 6       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]       ; 8       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_motion[1]      ; 3       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[6]      ; 6       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[7]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[3]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[5]      ; 7       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[4]      ; 11      ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[6]      ; 6       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[7]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[3]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[2]      ; 4       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[7]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[6]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[5]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[4]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[3]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[2]      ; 2       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[1]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[0]      ; 4       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[7]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[6]      ; 2       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[3]      ; 2       ;
 ; display:inst4|bouncy_ball:bird|lives[0]                         ; 4       ;
 ; display:inst4|bouncy_ball:bird|lives[1]                         ; 3       ;
 ; display:inst4|bouncy_ball:bird|lives[4]                         ; 3       ;
@@ -437,7 +437,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[5]     ; 3       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[7]     ; 3       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[1]     ; 3       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|\Pipe_Motion:level[0] ; 8       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|\Pipe_Motion:level[0] ; 6       ;
 ; display:inst4|bouncy_ball:bird|\Move_Ball:life[0]               ; 4       ;
 ; display:inst4|bouncy_ball:bird|\Move_Ball:life[1]               ; 4       ;
 ; display:inst4|bouncy_ball:bird|\Move_Ball:score_check           ; 2       ;
@@ -458,12 +458,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------+
 ; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |vgaTest|VGA_SYNC:inst3|v_count[3]                                  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|lives[3]                    ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[2] ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[8] ;
 ; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[8]  ;
 ; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[3]  ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|current_level[0] ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|lives[4]                    ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[3] ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|lives[5]                    ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[7] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]  ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[0] ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]  ;
@@ -1484,7 +1484,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon May 24 10:46:48 2021
+    Info: Processing started: Mon May 24 00:12:06 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vgaTest -c vgaTest
 Warning (125092): Tcl Script File ../MiniprojectResources/altpll0.qip not found
     Info (125063): set_global_assignment -name QIP_FILE ../MiniprojectResources/altpll0.qip
@@ -1660,17 +1660,17 @@ Info (286030): Timing-Driven Synthesis is running
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1032 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1046 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 5 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 963 logic cells
+    Info (21061): Implemented 977 logic cells
     Info (21064): Implemented 56 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 38 warnings
-    Info: Peak virtual memory: 4649 megabytes
-    Info: Processing ended: Mon May 24 10:46:51 2021
-    Info: Elapsed time: 00:00:03
+    Info: Peak virtual memory: 4648 megabytes
+    Info: Processing ended: Mon May 24 00:12:10 2021
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 
 

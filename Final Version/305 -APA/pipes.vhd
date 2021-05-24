@@ -32,7 +32,7 @@ port
 );
 end component LFSR;	
 
-SIGNAL gap     					: integer   := 80;  -- gap between the two pipes
+SIGNAL gap     					: integer   := 100;  -- gap between the two pipes
 
 SIGNAL pipe_width 				: std_logic_vector(9 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(35,10);
 SIGNAL pipe_spacing 				: std_logic_vector(9 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(285,10);
@@ -104,7 +104,7 @@ begin
 			pipe_x_pos_1 <= pipe_x_pos_1 - pipe_x_motion;
 			pipe_x_pos_2 <= pipe_x_pos_2 - pipe_x_motion;
 			
-			current_level <= "110001"; -- fix level to 1
+			current_level <= "110011";
 		
 			if (pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(0,11)) then
 				pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
