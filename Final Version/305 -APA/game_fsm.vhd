@@ -8,15 +8,15 @@ port (
 		clk, reset, PB1, PB2, SW_pause : in std_logic; 
 		hit : in std_logic;
 		game_reset, game_pause : out std_logic;
-		selected_mode : out std_logic_vector(1 downto 0)
+		selected_mode : out std_logic_vector(2 downto 0)
 		);
 		
 end entity;
 
 architecture fsm of game_fsm is
 -- FSM signals
-type state_type is (s_menu, s_regular, s_training, s_over);
-signal state, next_state : state_type;
+type state_type is (s_menu, s_regular, s_training, s_over, s_pause);
+signal state, next_state, prev_state : state_type;
 
 begin
 
@@ -50,7 +50,10 @@ begin
 				if (hit = '1') then 
 					next_state <= s_over;
 				elsif (reset = '1') then 
-					next_state <= s_menu;	
+					next_state <= s_menu;
+				elsif (SW_pause = '1') then
+					prev_state <= s_training;
+					next_state <= s_pause;	
 				else
 					next_state <= s_training;
 				end if;
@@ -60,6 +63,9 @@ begin
 					next_state <= s_over;
 				elsif (reset = '1') then 
 					next_state <= s_menu;
+				elsif (SW_pause = '1') then
+					prev_state <= s_regular;
+					next_state <= s_pause;
 				else
 					next_state <= s_regular;
 				end if;
@@ -70,7 +76,13 @@ begin
 				else 
 					next_state <= s_over;
 				end if;
-				
+			
+			when s_pause =>
+				if (SW_pause = '0') then
+					next_state <= prev_state;
+				else
+					next_state <= s_pause;
+				end if;
 		end case;
 		game_pause <= SW_pause;
 	end process;
@@ -81,16 +93,19 @@ begin
 			case state is
 				when s_menu =>
 					game_reset <= '1';
-					selected_mode <= "00";
+					selected_mode <= "000";
 				when s_training =>
 					game_reset <= '0';
-					selected_mode <= "01";
+					selected_mode <= "001";
 				when s_regular =>
 					game_reset <= '0';
-					selected_mode <= "10";
+					selected_mode <= "010";
 				when s_over =>
 					game_reset <= '0';
-					selected_mode <= "11";
+					selected_mode <= "011";
+				when s_pause =>
+					game_reset <= '0';
+					selected_mode <= "100";
 			end case;
 		end process;
 end architecture fsm;

@@ -11,7 +11,7 @@ ENTITY bouncy_ball IS
 		(SIGNAL pb1, pb2, clk, vert_sync	      			: IN std_logic;
 		 SIGNAL reset, pause    			      			: IN std_logic;
        SIGNAL pixel_row, pixel_column	      			: IN std_logic_vector(9 DOWNTO 0);
-		 SIGNAL selected_mode                 			   : IN std_logic_vector(1 downto 0);
+		 SIGNAL selected_mode                 			   : IN std_logic_vector(2 downto 0);
 		 SIGNAL score0_out, score1_out, score2_out 	   : OUT std_logic_vector(5 downto 0);
 		 SIGNAL hit													: OUT std_logic := '0';
 		 SIGNAL text_on, ball_on, pipe_out 					: OUT std_logic);	
@@ -40,7 +40,7 @@ COMPONENT pipes is
 		SIGNAL reset, pause					  : IN std_logic;
 		SIGNAL hit_temp						  : IN std_logic;
 		SIGNAL pixel_row, pixel_column	  : IN std_logic_vector(9 DOWNTO 0);
-		SIGNAL selected_mode               : IN std_logic_vector(1 downto 0);
+		SIGNAL selected_mode               : IN std_logic_vector(2 downto 0);
 		SIGNAL x_pos_1, x_pos_2 			  : OUT std_logic_vector(10 DOWNTO 0);
 		SIGNAL topheight_1, bottomheight_1 : OUT integer;
 	   SIGNAL topheight_2, bottomheight_2 : OUT integer;
@@ -158,7 +158,7 @@ begin
 		
 	elsif(rising_edge(vert_sync) and pause = '0') then  -- every vertical sync = 699 * 524 / 25MHz = 0.015 sec
 		-- Move ball once every vertical sync
-		if (selected_mode = "01" or selected_mode = "10") then			
+		if (selected_mode = "001" or selected_mode = "010") then			
 			
 				if (pb1 = '1' and ball_y_pos > size) then -- moving up
 					ball_y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
@@ -204,7 +204,7 @@ begin
 			end if;
 			
 			-- (SPECIAL FEATURE, REGULAR MODE ONLY!!! Player gains a life every 10 points if remaining lives is less 9...As a reward :)
-			if (selected_mode = "10" and lives < 9 and score = 10) then
+			if (selected_mode = "010" and lives < 9 and score = 10) then
 				score := 0;
 				lives <= lives + 1;
 			end if;

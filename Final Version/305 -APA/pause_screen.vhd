@@ -1,0 +1,55 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_signed.all;
+
+--This is gameover state of the FSM that is reached when the bird's lives finish or the bird hits the floor or ceiling
+
+entity pause_screen is
+	port(
+		SIGNAL clk, vert_sync		      : IN std_logic;
+		SIGNAL reset, pause					: IN std_logic;
+		SIGNAL pixel_row, pixel_column	: IN std_logic_vector(9 DOWNTO 0);
+		SIGNAL pause_out, pause_text_on 	: OUT std_logic	
+		);
+end pause_screen;
+
+architecture behaviour of pause_screen is
+
+COMPONENT char_rom is
+	PORT (
+		character_address	:	IN STD_LOGIC_VECTOR (5 DOWNTO 0);
+		font_row, font_col	:	IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+		clock				: 	IN STD_LOGIC ;
+		rom_mux_output		:	OUT STD_LOGIC
+	);
+end COMPONENT char_rom;
+
+SIGNAL text_out : STD_LOGIC := '0';
+SIGNAL text_val : std_logic_vector(5 downto 0); 
+
+
+begin
+
+-- Determines when and where to display the game over text
+pause_text_on <= '1' when (text_out = '1' and pixel_column <= CONV_STD_LOGIC_VECTOR(415,10) and pixel_column >= CONV_STD_LOGIC_VECTOR(254,10) 
+					and pixel_row <= CONV_STD_LOGIC_VECTOR(222,10) and pixel_row >= CONV_STD_LOGIC_VECTOR(208,10)) else	
+			'0';
+
+-- Prints "Game over"
+text_val <= CONV_STD_LOGIC_VECTOR(16,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(270,10) else --"P"
+				CONV_STD_LOGIC_VECTOR(1,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(288,10) else --"A
+				CONV_STD_LOGIC_VECTOR(21,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(304,10) else --"U"
+				CONV_STD_LOGIC_VECTOR(19,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(320,10) else --"S"
+				CONV_STD_LOGIC_VECTOR(5,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(336,10) else --"E"
+				CONV_STD_LOGIC_VECTOR(4,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(352,10) else --"D"
+				"100000";																									--"/ "
+
+
+--	Assigns port map and instantiates these components				
+text: char_rom port map (text_val, pixel_row(3 downto 1), pixel_column(3 downto 1), clk, text_out);
+
+pause_out <= '1';
+
+end architecture behaviour;
