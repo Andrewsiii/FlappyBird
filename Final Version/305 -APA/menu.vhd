@@ -44,12 +44,14 @@ menu_text_on <= '1' when (text_out = '1' and pixel_column <= CONV_STD_LOGIC_VECT
 			        '0';
 
 -- prints our team name ""FLAPGA in the menu screen
-text_val <= CONV_STD_LOGIC_VECTOR(6,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(270,10) else --"F"
-				CONV_STD_LOGIC_VECTOR(12,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(288,10) else --"L"
+text_val <= CONV_STD_LOGIC_VECTOR(20,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(270,10) else --"T"
+				CONV_STD_LOGIC_VECTOR(5,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(288,10) else --"E"
 				CONV_STD_LOGIC_VECTOR(1,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(304,10) else --"A"
-				CONV_STD_LOGIC_VECTOR(16,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(320,10) else --"P"
-				CONV_STD_LOGIC_VECTOR(7,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(332,10) else --"G "
+				CONV_STD_LOGIC_VECTOR(13,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(320,10) else --"M"
+				CONV_STD_LOGIC_VECTOR(32,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(332,10) else --" "
 				CONV_STD_LOGIC_VECTOR(1,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(350,10) else --"A"
+				CONV_STD_LOGIC_VECTOR(16,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(366,10) else --"P"
+				CONV_STD_LOGIC_VECTOR(1,6) when pixel_column <= CONV_STD_LOGIC_VECTOR(382,10) else --"A"
 				"100000";																									--"/ "
 
 -- Prints the game mode selection instruction				

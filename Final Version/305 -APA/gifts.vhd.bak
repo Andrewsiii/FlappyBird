@@ -1,0 +1,34 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_ARITH.all;
+USE  IEEE.STD_LOGIC_SIGNED.all;
+
+-- Logic of the pipes 
+
+entity gifts is
+	port(
+		SIGNAL clk, vert_sync		        : IN std_logic;
+		SIGNAL reset, pause					  : IN std_logic;
+		SIGNAL hit_temp						  : IN std_logic;
+		SIGNAL pixel_row, pixel_column	  : IN std_logic_vector(9 DOWNTO 0);
+		SIGNAL selected_mode               : IN std_logic_vector(2 downto 0);
+		SIGNAL x_pos_1, x_pos_2 			  : OUT std_logic_vector(10 DOWNTO 0);
+		SIGNAL topheight_1, bottomheight_1 : OUT integer;
+	   SIGNAL topheight_2, bottomheight_2 : OUT integer;
+		SIGNAL pipe_out 	                 : OUT std_logic;
+		SIGNAL current_level					: OUT std_logic_vector(5 DOWNTO 0)
+		);
+end gifts;
+
+architecture behavior of gifts is	
+
+--Adds a component of the LSFR which will be used to randomly determine pipe gap size
+component LFSR is
+port
+(
+    clk : in std_logic;
+    reset : in std_logic;
+    output : out std_logic_vector(8 downto 0)
+);
+end component LFSR;	
+
