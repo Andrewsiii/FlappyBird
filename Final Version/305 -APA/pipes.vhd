@@ -92,9 +92,6 @@ begin
 		pipe_center_2 <= 255;
 		
 	--	If a collision is detected, one life is lost and the pipes will reset but everything else will remain the same
-	elsif (hit_temp = '1') then
-		pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
-		pipe_x_pos_2 <= CONV_STD_LOGIC_VECTOR(960,11);
 		
 	elsif(rising_edge(vert_sync) and pause = '0') then -- every vertical sync = 699 * 524 / 25MHz = 0.015 sec
 	
@@ -105,6 +102,10 @@ begin
 			pipe_x_pos_2 <= pipe_x_pos_2 - pipe_x_motion;
 			
 			current_level <= "110011";
+			if (hit_temp = '1') then
+					pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
+					pipe_x_pos_2 <= CONV_STD_LOGIC_VECTOR(960,11);
+			end if;
 		
 			if (pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(0,11)) then
 				pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
@@ -133,18 +134,20 @@ begin
 				pipe_center_2 <= CONV_INTEGER(randnum);
 			end if;
 			
+			if (hit_temp = '1') then
+				pipe_x_pos_1 <= CONV_STD_LOGIC_VECTOR(640,11);
+				pipe_x_pos_2 <= CONV_STD_LOGIC_VECTOR(960,11);
+			end if;
+			
 			-- speed of pipe increases with level, up to level 4 (it will increase 0.015*500 = around every 7.5 sec)
-			if(count = 500 and level < 4) then 
+			if(count = 500 and level < 3) then 
 				count := 0;
 				level := level + 1;
 				if (level = 2) then
 					current_level <= "110010";
 					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
-				elsif (level = 3) then
-					current_level <= "110011";
-					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
 				else
-					current_level <= "110100";
+					current_level <= "110011";
 					pipe_x_motion <= pipe_x_motion + CONV_STD_LOGIC_VECTOR(1, 11);
 				end if;
 				

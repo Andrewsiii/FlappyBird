@@ -27,7 +27,7 @@ component bouncy_ball is
 		 SIGNAL selected_mode                 			   : IN std_logic_vector(2 downto 0);
 		 SIGNAL score0_out, score1_out, score2_out 	   : OUT std_logic_vector(5 downto 0);
 		 SIGNAL hit													: OUT std_logic := '0';
-		 SIGNAL text_on, ball_on, pipe_out 					: OUT std_logic);
+		 SIGNAL text_on, ball_on, pipe_out, gift_out 	: OUT std_logic);
 end component bouncy_ball;
 
 -- Adds the menu screen component to allow it to be displayed
@@ -60,7 +60,7 @@ component pause_screen is
 		);
 end component pause_screen;
 
-signal bird_text_on, bird_ball_on, bird_pipe_on : std_logic;
+signal bird_text_on, bird_ball_on, bird_pipe_on, bird_gift_on : std_logic;
 signal menu_screen_on, menu_text_on 	   : std_logic;
 signal over_screen_on, over_text_on 	   : std_logic;
 signal player_hit							      : std_logic;
@@ -71,7 +71,7 @@ begin
 
 --	Assigns port map and instantiates these components	
 bird: bouncy_ball port map (pb1, pb2, clk, vert_sync, reset, pause, pixel_row, pixel_column, selected_mode, 
-                            score0_out, score1_out, score2_out, player_hit, bird_text_on, bird_ball_on, bird_pipe_on);
+                            score0_out, score1_out, score2_out, player_hit, bird_text_on, bird_ball_on, bird_pipe_on, bird_gift_on);
 menu_screen : menu port map (clk, vert_sync, reset, pause, pixel_row, pixel_column, menu_text_on, menu_screen_on);
 game_over_screen : gameover port map (clk, vert_sync, reset, pause, pixel_row, pixel_column, score0_out, score1_out, 
 												  score2_out, over_text_on, over_screen_on);
@@ -96,9 +96,9 @@ begin
 		
 	--Controls the graphics of the game play states (regular and training mode), sets a blue background, white text, green pipes and red ball	
 	elsif (selected_mode = "010" or selected_mode = "001") then
-		Red <=  bird_text_on or bird_ball_on;
-		Green <= (bird_text_on and not(bird_ball_on)) or bird_pipe_on;
-		Blue <=  not(bird_ball_on);
+		Red <=  bird_text_on or bird_ball_on or bird_gift_on;
+		Green <= (bird_text_on and not(bird_ball_on)) or bird_pipe_on or bird_gift_on;
+		Blue <=  not(bird_ball_on) or bird_gift_on;
 		hit <= player_hit;
 		
 	elsif (selected_mode = "100") then

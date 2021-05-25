@@ -14,7 +14,7 @@ ENTITY bouncy_ball IS
 		 SIGNAL selected_mode                 			   : IN std_logic_vector(2 downto 0);
 		 SIGNAL score0_out, score1_out, score2_out 	   : OUT std_logic_vector(5 downto 0);
 		 SIGNAL hit													: OUT std_logic := '0';
-		 SIGNAL text_on, ball_on, pipe_out 					: OUT std_logic);	
+		 SIGNAL text_on, ball_on, pipe_out, gift_out 					: OUT std_logic);	
 END bouncy_ball;
 
 architecture behavior of bouncy_ball is
@@ -50,6 +50,20 @@ COMPONENT pipes is
 		);
 end COMPONENT pipes;
 
+COMPONENT gifts is
+	port(
+			SIGNAL clk, vert_sync		        : IN std_logic;
+			SIGNAL reset, pause					  : IN std_logic;
+			SIGNAL touch_ball						  : IN std_logic;
+			SIGNAL pixel_row, pixel_column	  : IN std_logic_vector(9 DOWNTO 0);
+			SIGNAL selected_mode               : IN std_logic_vector(2 downto 0);
+			SIGNAL gift_x_position			  : OUT std_logic_vector(10 DOWNTO 0);
+			SIGNAL gift_y_position : OUT std_logic_vector(9 downto 0);
+			SIGNAL gift_out 	                 : OUT std_logic
+			);
+	end COMPONENT gifts;
+
+
 SIGNAL score_text_out        : STD_LOGIC := '0';
 SIGNAL score_text            : std_logic_vector(5 downto 0);
 SIGNAL score0,score1, score2 : std_logic_vector(5 downto 0) := "110000";
@@ -73,6 +87,10 @@ SIGNAL pipe_x_pos_2 : std_logic_vector(10 DOWNTO 0);
 SIGNAL topheight_1, bottomheight_1 : integer range 0 to 480;
 SIGNAL topheight_2, bottomheight_2 : integer range 0 to 480;
 SIGNAL hit_temp 				        : std_logic := '0';
+
+SIGNAL gift_x_pos : std_logic_vector(10 DOWNTO 0);
+SIGNAL gift_y_pos : std_logic_vector(9 downto 0);
+SIGNAL touch_ball : std_logic := '0';
 
 BEGIN           
 
@@ -134,13 +152,13 @@ textlives: char_rom port map (lives_text, pixel_row(3 downto 1), pixel_column(3 
 textlevel: char_rom port map (level_text, pixel_row(3 downto 1), pixel_column(3 downto 1), clk, level_text_out);
 pipe: pipes port map (clk, vert_sync, reset, pause, hit_temp, pixel_row, pixel_column, selected_mode, pipe_x_pos_1, 
                       pipe_x_pos_2, topheight_1, bottomheight_1, topheight_2, bottomheight_2, pipe_out, level);
-			
+gift: gifts port map (clk, vert_sync, reset, pause, touch_ball, pixel_row, pixel_column, selected_mode, gift_x_pos, gift_y_pos, gift_out);		
 
 	
 Move_Ball: process (vert_sync, reset, pause) 
-variable flag : std_logic := '0'; -- determines wheter or not ball is allowed to jump
+
 variable score_check : std_logic := '1';
-variable life	:	integer range 0 to 3 := 3;
+variable life	:	integer range 0 to 9 := 3;
 variable score : integer range 0 to 26 := 0;
 
 begin
@@ -159,7 +177,7 @@ begin
 	elsif(rising_edge(vert_sync) and pause = '0') then  -- every vertical sync = 699 * 524 / 25MHz = 0.015 sec
 		-- Move ball once every vertical sync
 		if (selected_mode = "001" or selected_mode = "010") then			
-			
+				
 				if (pb1 = '1' and ball_y_pos > size) then -- moving up
 					ball_y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
 				
@@ -186,31 +204,62 @@ begin
 				hit <= '1';
 			end if;
 			
+			--collision with the gift
+			if (((ball_x_pos + size) >= (gift_x_pos - 7) and (ball_x_pos - size) <= (gift_x_pos + 7)) and
+				 ((ball_y_pos - size) <= (gift_y_pos + 7) and (ball_y_pos + size) >= (gift_y_pos - 7) and touch_ball = '0')) then
+				 touch_ball <= '1';
+			end if;
+			
+			
 			-- If a collision occurs, life decreases by one, motion of ball is reset
 			if (hit_temp = '1') then
+				life := life - 1;
 				if (life > 0) then
-					ball_y_pos <= CONV_STD_LOGIC_VECTOR(100, 10);
-					ball_y_motion <= -CONV_STD_LOGIC_VECTOR(5,10);
-					life := life - 1;
-					lives <= lives - 1;
 					hit_temp <= '0';
-				else 
+				elsif (life = 0) then
 					hit <= '1';
 				end if;
 			end if;
 			
-			if((ball_x_pos <= pipe_x_pos_1 and ball_x_pos <= pipe_x_pos_2) and score_check = '0') then
+			if (touch_ball = '1') then
+				life := life + 1 ;
+				if (life < 9) then
+					touch_ball <= '0';
+				elsif (life > 9) then
+					life := 9;
+					touch_ball <= '0';
+				end if;
+			end if;
+			
+			if((ball_x_pos <= pipe_x_pos_1 and ball_x_pos <= pipe_x_pos_2) and score_check = '0') then --to make sure it increases score only once per pipe
 				score_check := '1';
 			end if;
 			
-			-- (SPECIAL FEATURE, REGULAR MODE ONLY!!! Player gains a life every 10 points if remaining lives is less 9...As a reward :)
-			if (selected_mode = "010" and lives < 9 and score = 10) then
-				score := 0;
-				lives <= lives + 1;
-			end if;
 			
 			--updates the y position of the player
 			ball_y_pos <= ball_y_pos + ball_y_motion;
+			
+			if (life = 1) then
+				lives <= "110001";
+			elsif (life = 2) then
+				lives <= "110010";
+			elsif (life = 3) then
+				lives <= "110011";
+			elsif (life = 4) then
+				lives <= "110100";
+			elsif (life = 5) then
+				lives <= "110101";
+			elsif (life = 6) then
+				lives <= "110110";
+			elsif (life = 7) then
+				lives <= "110111";
+			elsif (life = 8) then
+				lives <= "111000";
+			elsif (life = 9) then
+				lives <= "111001";
+			else
+				lives <= "111001";
+			end if;
 			
 			-- Logic to increase the score by one when the bird passes through a pipe 
 			if ((ball_x_pos >= pipe_x_pos_1 or ball_x_pos >= pipe_x_pos_2) and score_check = '1') then

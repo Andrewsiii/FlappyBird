@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vgaTest
-Tue May 25 00:16:16 2021
+Tue May 25 12:15:38 2021
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -43,10 +43,11 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  35. altsyncram Parameter Settings by Entity Instance
  36. Port Connectivity Checks: "display:inst4|pause_screen:paused_screen|char_rom:text"
  37. Port Connectivity Checks: "display:inst4|menu:menu_screen|char_rom:text"
- 38. Port Connectivity Checks: "display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand"
- 39. Port Connectivity Checks: "display:inst4|bouncy_ball:bird|pipes:pipe"
- 40. Elapsed Time Per Partition
- 41. Analysis & Synthesis Messages
+ 38. Port Connectivity Checks: "display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand"
+ 39. Port Connectivity Checks: "display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand"
+ 40. Port Connectivity Checks: "display:inst4|bouncy_ball:bird|pipes:pipe"
+ 41. Elapsed Time Per Partition
+ 42. Analysis & Synthesis Messages
 
 
 
@@ -72,15 +73,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue May 25 00:16:16 2021           ;
+; Analysis & Synthesis Status        ; Successful - Tue May 25 12:15:38 2021           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; vgaTest                                         ;
 ; Top-level Entity Name              ; vgaTest                                         ;
 ; Family                             ; Cyclone III                                     ;
-; Total logic elements               ; 983                                             ;
-;     Total combinational functions  ; 932                                             ;
-;     Dedicated logic registers      ; 239                                             ;
-; Total registers                    ; 239                                             ;
+; Total logic elements               ; 1,189                                           ;
+;     Total combinational functions  ; 1,138                                           ;
+;     Dedicated logic registers      ; 253                                             ;
+; Total registers                    ; 253                                             ;
 ; Total pins                         ; 12                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 32,768                                          ;
@@ -205,6 +206,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; altpll1.vhd                      ; yes             ; User Wizard-Generated File             ; C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/altpll1.vhd            ;         ;
 ; vgaTest.bdf                      ; yes             ; User Block Diagram/Schematic File      ; C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/vgaTest.bdf            ;         ;
 ; pause_screen.vhd                 ; yes             ; User VHDL File                         ; C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/pause_screen.vhd       ;         ;
+; gifts.vhd                        ; yes             ; User VHDL File                         ; C:/Users/skwe9/Documents/GitHub/compsys-305/Final Version/305 -APA/gifts.vhd              ;         ;
 ; altpll.tdf                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf                              ;         ;
 ; aglobal130.inc                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                          ;         ;
 ; stratix_pll.inc                  ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc                         ;         ;
@@ -229,20 +231,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                               ;
 +---------------------------------------------+-------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 983                                                                                 ;
+; Estimated Total logic elements              ; 1,189                                                                               ;
 ;                                             ;                                                                                     ;
-; Total combinational functions               ; 932                                                                                 ;
+; Total combinational functions               ; 1138                                                                                ;
 ; Logic element usage by number of LUT inputs ;                                                                                     ;
-;     -- 4 input functions                    ; 403                                                                                 ;
-;     -- 3 input functions                    ; 274                                                                                 ;
-;     -- <=2 input functions                  ; 255                                                                                 ;
+;     -- 4 input functions                    ; 444                                                                                 ;
+;     -- 3 input functions                    ; 337                                                                                 ;
+;     -- <=2 input functions                  ; 357                                                                                 ;
 ;                                             ;                                                                                     ;
 ; Logic elements by mode                      ;                                                                                     ;
-;     -- normal mode                          ; 622                                                                                 ;
-;     -- arithmetic mode                      ; 310                                                                                 ;
+;     -- normal mode                          ; 703                                                                                 ;
+;     -- arithmetic mode                      ; 435                                                                                 ;
 ;                                             ;                                                                                     ;
-; Total registers                             ; 239                                                                                 ;
-;     -- Dedicated logic registers            ; 239                                                                                 ;
+; Total registers                             ; 253                                                                                 ;
+;     -- Dedicated logic registers            ; 253                                                                                 ;
 ;     -- I/O registers                        ; 0                                                                                   ;
 ;                                             ;                                                                                     ;
 ; I/O pins                                    ; 12                                                                                  ;
@@ -253,8 +255,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                                                                                     ;
 ; Maximum fan-out node                        ; altpll1:inst|altpll:altpll_component|altpll1_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 153                                                                                 ;
-; Total fan-out                               ; 4372                                                                                ;
-; Average fan-out                             ; 3.46                                                                                ;
+; Total fan-out                               ; 4953                                                                                ;
+; Average fan-out                             ; 3.34                                                                                ;
 +---------------------------------------------+-------------------------------------------------------------------------------------+
 
 
@@ -263,33 +265,34 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                ; Library Name ;
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |vgaTest                                        ; 932 (1)           ; 239 (0)      ; 32768       ; 0            ; 0       ; 0         ; 12   ; 0            ; |vgaTest                                                                                                                           ; work         ;
-;    |MOUSE:inst2|                                ; 50 (50)           ; 62 (62)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|MOUSE:inst2                                                                                                               ; work         ;
-;    |VGA_SYNC:inst3|                             ; 70 (70)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|VGA_SYNC:inst3                                                                                                            ; work         ;
+; |vgaTest                                        ; 1138 (1)          ; 253 (0)      ; 32768       ; 0            ; 0       ; 0         ; 12   ; 0            ; |vgaTest                                                                                                                           ; work         ;
+;    |MOUSE:inst2|                                ; 51 (51)           ; 62 (62)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|MOUSE:inst2                                                                                                               ; work         ;
+;    |VGA_SYNC:inst3|                             ; 75 (75)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|VGA_SYNC:inst3                                                                                                            ; work         ;
 ;    |altpll1:inst|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst                                                                                                              ; work         ;
 ;       |altpll:altpll_component|                 ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst|altpll:altpll_component                                                                                      ; work         ;
 ;          |altpll1_altpll:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|altpll1:inst|altpll:altpll_component|altpll1_altpll:auto_generated                                                        ; work         ;
-;    |display:inst4|                              ; 797 (6)           ; 124 (0)      ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4                                                                                                             ; work         ;
-;       |bouncy_ball:bird|                        ; 606 (359)         ; 124 (48)     ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird                                                                                            ; work         ;
+;    |display:inst4|                              ; 997 (9)           ; 138 (0)      ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4                                                                                                             ; work         ;
+;       |bouncy_ball:bird|                        ; 801 (408)         ; 138 (44)     ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird                                                                                            ; work         ;
 ;          |char_rom:textlevel|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel                                                                         ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel|altsyncram:altsyncram_component                                         ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlevel|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated          ; work         ;
-;          |char_rom:textlives|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlives                                                                         ; work         ;
+;          |char_rom:textlives|                   ; 5 (5)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlives                                                                         ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlives|altsyncram:altsyncram_component                                         ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textlives|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated          ; work         ;
 ;          |char_rom:textscore|                   ; 5 (5)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore                                                                         ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore|altsyncram:altsyncram_component                                         ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|char_rom:textscore|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated          ; work         ;
-;          |pipes:pipe|                           ; 234 (219)         ; 76 (68)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe                                                                                 ; work         ;
-;             |LFSR:rand|                         ; 15 (15)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand                                                                       ; work         ;
-;       |gameover:game_over_screen|               ; 67 (58)           ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen                                                                                   ; work         ;
+;          |gifts:gift|                           ; 140 (123)         ; 28 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|gifts:gift                                                                                 ; work         ;
+;             |LFSR:rand|                         ; 17 (17)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand                                                                       ; work         ;
+;          |pipes:pipe|                           ; 239 (239)         ; 66 (66)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe                                                                                 ; work         ;
+;       |gameover:game_over_screen|               ; 64 (56)           ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen                                                                                   ; work         ;
 ;          |char_rom:scoretext|                   ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:scoretext                                                                ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:scoretext|altsyncram:altsyncram_component                                ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:scoretext|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated ; work         ;
-;          |char_rom:text|                        ; 5 (5)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:text                                                                     ; work         ;
+;          |char_rom:text|                        ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:text                                                                     ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:text|altsyncram:altsyncram_component                                     ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:text|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated      ; work         ;
-;       |menu:menu_screen|                        ; 103 (95)          ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|menu:menu_screen                                                                                            ; work         ;
+;       |menu:menu_screen|                        ; 108 (100)         ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|menu:menu_screen                                                                                            ; work         ;
 ;          |char_rom:info|                        ; 4 (4)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|menu:menu_screen|char_rom:info                                                                              ; work         ;
 ;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|menu:menu_screen|char_rom:info|altsyncram:altsyncram_component                                              ; work         ;
 ;                |altsyncram_kt91:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |vgaTest|display:inst4|menu:menu_screen|char_rom:info|altsyncram:altsyncram_component|altsyncram_kt91:auto_generated               ; work         ;
@@ -372,23 +375,35 @@ Encoding Type:  One-Hot
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                  ;
-+------------------------------------------------------------+------------------------------------------------------------------------+
-; Register name                                              ; Reason for Removal                                                     ;
-+------------------------------------------------------------+------------------------------------------------------------------------+
-; MOUSE:inst2|CHAROUT[4..7]                                  ; Stuck at VCC due to stuck port data_in                                 ;
-; MOUSE:inst2|CHAROUT[3]                                     ; Stuck at GND due to stuck port data_in                                 ;
-; MOUSE:inst2|CHAROUT[2]                                     ; Stuck at VCC due to stuck port data_in                                 ;
-; MOUSE:inst2|CHAROUT[0,1]                                   ; Stuck at GND due to stuck port data_in                                 ;
-; MOUSE:inst2|SHIFTOUT[10]                                   ; Stuck at VCC due to stuck port data_in                                 ;
-; display:inst4|bouncy_ball:bird|ball_y_motion[4..9]         ; Merged with display:inst4|bouncy_ball:bird|ball_y_motion[3]            ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[5] ; Merged with display:inst4|bouncy_ball:bird|pipes:pipe|current_level[4] ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[3] ; Stuck at GND due to stuck port data_in                                 ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[4] ; Stuck at VCC due to stuck port data_in                                 ;
-; VGA_SYNC:inst3|pixel_row[9]                                ; Stuck at GND due to stuck port data_in                                 ;
-; Total Number of Removed Registers = 19                     ;                                                                        ;
-+------------------------------------------------------------+------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                        ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------+
+; Register name                                                   ; Reason for Removal                                                      ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------+
+; MOUSE:inst2|CHAROUT[4..7]                                       ; Stuck at VCC due to stuck port data_in                                  ;
+; MOUSE:inst2|CHAROUT[3]                                          ; Stuck at GND due to stuck port data_in                                  ;
+; MOUSE:inst2|CHAROUT[2]                                          ; Stuck at VCC due to stuck port data_in                                  ;
+; MOUSE:inst2|CHAROUT[0,1]                                        ; Stuck at GND due to stuck port data_in                                  ;
+; MOUSE:inst2|SHIFTOUT[10]                                        ; Stuck at VCC due to stuck port data_in                                  ;
+; display:inst4|bouncy_ball:bird|lives[4,5]                       ; Stuck at VCC due to stuck port data_in                                  ;
+; display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[9]         ; Stuck at GND due to stuck port data_in                                  ;
+; display:inst4|bouncy_ball:bird|ball_y_motion[4..9]              ; Merged with display:inst4|bouncy_ball:bird|ball_y_motion[3]             ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[2]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[2] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[1]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[1] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[0]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[0] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[3]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[3] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[4]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[4] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[5]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[5] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[6]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[6] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[7]     ; Merged with display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[7] ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[3]      ; Merged with display:inst4|bouncy_ball:bird|pipes:pipe|current_level[2]  ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[5]      ; Merged with display:inst4|bouncy_ball:bird|pipes:pipe|current_level[4]  ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[2]      ; Stuck at GND due to stuck port data_in                                  ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|current_level[4]      ; Stuck at VCC due to stuck port data_in                                  ;
+; VGA_SYNC:inst3|pixel_row[9]                                     ; Stuck at GND due to stuck port data_in                                  ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|\Pipe_Motion:level[2] ; Stuck at GND due to stuck port data_in                                  ;
+; Total Number of Removed Registers = 32                          ;                                                                         ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -396,12 +411,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 239   ;
+; Total registers                              ; 253   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 22    ;
-; Number of registers using Asynchronous Clear ; 128   ;
+; Number of registers using Synchronous Load   ; 11    ;
+; Number of registers using Asynchronous Clear ; 142   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 171   ;
+; Number of registers using Clock Enable       ; 185   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -413,53 +428,55 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +-----------------------------------------------------------------+---------+
 ; display:inst4|bouncy_ball:bird|ball_y_pos[6]                    ; 6       ;
 ; display:inst4|bouncy_ball:bird|ball_y_pos[5]                    ; 7       ;
-; display:inst4|bouncy_ball:bird|ball_y_pos[2]                    ; 9       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[9]       ; 7       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[8]       ; 7       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[7]       ; 8       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]       ; 7       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[9]       ; 6       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]       ; 8       ;
+; display:inst4|bouncy_ball:bird|ball_y_pos[2]                    ; 11      ;
+; display:inst4|bouncy_ball:bird|gifts:gift|gift_x_pos[9]         ; 5       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|gift_x_pos[8]         ; 5       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|gift_x_pos[7]         ; 5       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|gift_x_pos[6]         ; 5       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_motion[1]      ; 3       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[6]      ; 6       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[7]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[3]      ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[5]      ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[9]       ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]       ; 8       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[4]      ; 11      ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[5]      ; 7       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[6]      ; 6       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[7]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[3]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[2]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[1]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[0]      ; 4       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[9]       ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[8]       ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[7]       ; 8       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]       ; 7       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[6]      ; 6       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[7]      ; 4       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[3]      ; 4       ;
 ; display:inst4|bouncy_ball:bird|score2[4]                        ; 6       ;
 ; display:inst4|bouncy_ball:bird|score1[4]                        ; 6       ;
 ; display:inst4|bouncy_ball:bird|score0[4]                        ; 5       ;
 ; display:inst4|bouncy_ball:bird|score2[5]                        ; 6       ;
 ; display:inst4|bouncy_ball:bird|score1[5]                        ; 6       ;
 ; display:inst4|bouncy_ball:bird|score0[5]                        ; 5       ;
-; display:inst4|bouncy_ball:bird|lives[0]                         ; 4       ;
-; display:inst4|bouncy_ball:bird|lives[1]                         ; 3       ;
-; display:inst4|bouncy_ball:bird|lives[4]                         ; 3       ;
-; display:inst4|bouncy_ball:bird|lives[5]                         ; 3       ;
+; display:inst4|bouncy_ball:bird|lives[0]                         ; 1       ;
+; display:inst4|bouncy_ball:bird|lives[1]                         ; 1       ;
 ; display:inst4|bouncy_ball:bird|ball_y_motion[3]                 ; 7       ;
 ; display:inst4|bouncy_ball:bird|ball_y_motion[1]                 ; 1       ;
 ; display:inst4|bouncy_ball:bird|ball_y_motion[0]                 ; 1       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[3]     ; 5       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[5]     ; 3       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[7]     ; 3       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand|rand[1]     ; 3       ;
-; display:inst4|bouncy_ball:bird|\Move_Ball:score_check           ; 2       ;
-; display:inst4|bouncy_ball:bird|\Move_Ball:life[0]               ; 4       ;
-; display:inst4|bouncy_ball:bird|\Move_Ball:life[1]               ; 4       ;
-; display:inst4|bouncy_ball:bird|pipes:pipe|\Pipe_Motion:level[0] ; 6       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[3]     ; 12      ;
+; display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[5]     ; 4       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[7]     ; 3       ;
+; display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand|rand[1]     ; 5       ;
+; display:inst4|bouncy_ball:bird|\Move_Ball:score_check           ; 1       ;
+; display:inst4|bouncy_ball:bird|pipes:pipe|\Pipe_Motion:level[0] ; 5       ;
+; display:inst4|bouncy_ball:bird|\Move_Ball:life[0]               ; 10      ;
+; display:inst4|bouncy_ball:bird|\Move_Ball:life[1]               ; 7       ;
 ; MOUSE:inst2|send_char                                           ; 3       ;
 ; MOUSE:inst2|SHIFTOUT[3]                                         ; 1       ;
 ; MOUSE:inst2|SHIFTOUT[5]                                         ; 1       ;
 ; MOUSE:inst2|SHIFTOUT[6]                                         ; 1       ;
 ; MOUSE:inst2|SHIFTOUT[7]                                         ; 1       ;
 ; MOUSE:inst2|SHIFTOUT[8]                                         ; 1       ;
-; Total number of inverted registers = 48                         ;         ;
+; Total number of inverted registers = 50                         ;         ;
 +-----------------------------------------------------------------+---------+
 
 
@@ -468,29 +485,29 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |vgaTest|VGA_SYNC:inst3|v_count[9]                                  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|lives[3]                    ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[4] ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[10] ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[0]  ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|current_level[2] ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|lives[5]                    ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |vgaTest|VGA_SYNC:inst3|v_count[0]                                  ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[5] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|current_level[1] ;
+; 7:1                ; 9 bits    ; 36 LEs        ; 9 LEs                ; 27 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[3]  ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[4]  ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_1[6] ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[7] ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_center_2[5] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_1[7]  ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |vgaTest|display:inst4|bouncy_ball:bird|pipes:pipe|pipe_x_pos_2[6]  ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|text_val[3]                 ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|level_text[3]               ;
 ; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|char_rom:text|Mux0 ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|level_text[0]               ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vgaTest|display:inst4|pause_screen:paused_screen|text_val[5]       ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|life                        ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|level_text[5]               ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vgaTest|display:inst4|pause_screen:paused_screen|text_val[2]       ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|text_val[1]        ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|text_val[5]                 ;
-; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|lives_text[4]               ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|text_val[2]        ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|lives_text[3]               ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|text_val[0]        ;
 ; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|bouncy_ball:bird|score_text[1]               ;
-; 10:1               ; 2 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|info_text[2]                ;
-; 11:1               ; 6 bits    ; 42 LEs        ; 36 LEs               ; 6 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|score_text[0]      ;
-; 17:1               ; 2 bits    ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|info_text[5]                ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|info_text[0]                ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 36 LEs               ; 6 LEs                  ; No         ; |vgaTest|display:inst4|gameover:game_over_screen|score_text[4]      ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |vgaTest|display:inst4|menu:menu_screen|info_text[1]                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------+
 
 
@@ -1561,6 +1578,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +---------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display:inst4|bouncy_ball:bird|gifts:gift|LFSR:rand" ;
++-------+-------+----------+------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                              ;
++-------+-------+----------+------------------------------------------------------+
+; reset ; Input ; Info     ; Stuck at GND                                         ;
++-------+-------+----------+------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand" ;
 +-------+-------+----------+------------------------------------------------------+
 ; Port  ; Type  ; Severity ; Details                                              ;
@@ -1596,7 +1622,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue May 25 00:16:12 2021
+    Info: Processing started: Tue May 25 12:15:34 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vgaTest -c vgaTest
 Warning (125092): Tcl Script File ../MiniprojectResources/altpll0.qip not found
     Info (125063): set_global_assignment -name QIP_FILE ../MiniprojectResources/altpll0.qip
@@ -1719,10 +1745,13 @@ Warning (10492): VHDL Process Statement warning at display.vhd(95): signal "over
 Warning (10492): VHDL Process Statement warning at display.vhd(95): signal "over_text_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(99): signal "bird_text_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(99): signal "bird_ball_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at display.vhd(99): signal "bird_gift_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(100): signal "bird_text_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(100): signal "bird_ball_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(100): signal "bird_pipe_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at display.vhd(100): signal "bird_gift_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(101): signal "bird_ball_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at display.vhd(101): signal "bird_gift_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(102): signal "player_hit" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(105): signal "pause_screen_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at display.vhd(106): signal "pause_text_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
@@ -1767,9 +1796,25 @@ Warning (10540): VHDL Signal Declaration warning at pipes.vhd(45): used explicit
 Warning (10540): VHDL Signal Declaration warning at pipes.vhd(46): used explicit default value for signal "height2_2" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at pipes.vhd(48): used explicit default value for signal "pipe_y_pos" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at pipes.vhd(55): used explicit default value for signal "LFSR_reset" because signal was never assigned a value
-Warning (10492): VHDL Process Statement warning at pipes.vhd(95): signal "hit_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at pipes.vhd(99): signal "pause" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pipes.vhd(96): signal "pause" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "LFSR" for hierarchy "display:inst4|bouncy_ball:bird|pipes:pipe|LFSR:rand"
+Info (12128): Elaborating entity "gifts" for hierarchy "display:inst4|bouncy_ball:bird|gifts:gift"
+Warning (10540): VHDL Signal Declaration warning at gifts.vhd(36): used explicit default value for signal "LFSR_reset" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at gifts.vhd(37): used explicit default value for signal "size" because signal was never assigned a value
+Warning (10492): VHDL Process Statement warning at gifts.vhd(54): signal "randnum" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at gifts.vhd(56): signal "pause" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at gifts.vhd(48): inferring latch(es) for signal or variable "gift_x_motion", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "gift_x_motion[0]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[1]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[2]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[3]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[4]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[5]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[6]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[7]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[8]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[9]" at gifts.vhd(48)
+Info (10041): Inferred latch for "gift_x_motion[10]" at gifts.vhd(48)
 Info (12128): Elaborating entity "menu" for hierarchy "display:inst4|menu:menu_screen"
 Info (12128): Elaborating entity "gameover" for hierarchy "display:inst4|gameover:game_over_screen"
 Info (12128): Elaborating entity "pause_screen" for hierarchy "display:inst4|pause_screen:paused_screen"
@@ -1799,19 +1844,29 @@ Warning (13012): Latch game_fsm:inst5|prev_state.s_training_216 has unsafe behav
     Warning (13013): Ports D and ENA on the latch are fed by the same signal game_fsm:inst5|state.s_regular
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[8]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[8]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[8]~1"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[7]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[7]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[7]~5"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[6]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[6]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[6]~9"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[5]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[5]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[5]~13"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[4]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[4]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[4]~17"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[3]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[3]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[3]~21"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[2]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[2]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[2]~25"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[1]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[1]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[1]~29"
+    Warning (13310): Register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[0]" is converted into an equivalent circuit using register "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[0]~_emulated" and latch "display:inst4|bouncy_ball:bird|gifts:gift|gift_y_pos[0]~33"
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1071 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1278 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 5 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 994 logic cells
+    Info (21061): Implemented 1201 logic cells
     Info (21064): Implemented 64 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 54 warnings
-    Info: Peak virtual memory: 4648 megabytes
-    Info: Processing ended: Tue May 25 00:16:16 2021
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 71 warnings
+    Info: Peak virtual memory: 4657 megabytes
+    Info: Processing ended: Tue May 25 12:15:38 2021
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 
